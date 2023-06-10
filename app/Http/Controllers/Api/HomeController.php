@@ -50,6 +50,6 @@ class HomeController extends Controller
             $members->where('full_name', 'LIKE', '%' . $request->search . '%');
         }
         $members = newPagination($members->latest());
-        return Helper::SuccessReturnPagination($members['data'], $members['totalPages'], $members['nextPageUrl'], 'MEMBERS_FETCH');
+        return Helper::SuccessReturn($members,'MEMBERS_FETCH');
     }
 }
