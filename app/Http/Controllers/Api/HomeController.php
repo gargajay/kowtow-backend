@@ -47,7 +47,7 @@ class HomeController extends Controller
             $members->where('workout_hours_id', $request->workout_hours_id);
         }
         if (!empty($request->search)) {
-            $members->where('full_name', 'ILIKE', '%' . $request->search . '%');
+            $members->where('full_name', 'LIKE', '%' . $request->search . '%');
         }
         $members = newPagination($members->latest());
         return Helper::SuccessReturnPagination($members['data'], $members['totalPages'], $members['nextPageUrl'], 'MEMBERS_FETCH');

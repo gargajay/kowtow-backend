@@ -43,10 +43,10 @@ class PaymentController extends Controller
                         $relation = substr($columnName, 0, $lastDotPosition);
                         $relationColumn = substr($columnName, $lastDotPosition + 1);
                         $query->orWhereHas($relation, function ($query) use ($datatableData, $relationColumn) {
-                            $query->whereRaw($relationColumn . ' ILIKE ?', ['%' . $datatableData['searchValue'] . '%']);
+                            $query->whereRaw($relationColumn . ' LIKE ?', ['%' . $datatableData['searchValue'] . '%']);
                         });
                     } else {
-                        $query->orWhereRaw($columnName . ' ILIKE ?', ['%' . $datatableData['searchValue'] . '%']);
+                        $query->orWhereRaw($columnName . ' LIKE ?', ['%' . $datatableData['searchValue'] . '%']);
                     }
                 }
             });

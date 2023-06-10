@@ -50,7 +50,7 @@ class EventController extends Controller
         $name = $request->get('search');
         $members = User::where('id', '!=', Auth::id())->where('user_type', USER_TYPE['USER'])->select('id', 'full_name', 'email', 'image');
         if (isset($name) && !empty($name)) {
-            $members->where('full_name', 'ILIKE', '%' . $name . '%');
+            $members->where('full_name', 'LIKE', '%' . $name . '%');
         }
         $latitude = $request->latitude;
         $longitude = $request->longitude;
