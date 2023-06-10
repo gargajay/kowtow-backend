@@ -22,7 +22,7 @@ class HomeController extends Controller
     public function filterMembers(Request $request)
     {
         $members = User::with('addresses')->where('id', '!=', Auth::id())->where('user_type', USER_TYPE['USER'])
-        ->select('id', 'full_name', 'image', 'fitness_level', 'address_id');
+        ->select('id', 'full_name', 'image', 'address_id');
         $latitude = $request->latitude ?? null;
         $longitude = $request->longitude ?? null;
         if ($latitude && $longitude) {

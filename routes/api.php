@@ -39,6 +39,9 @@ Route::group([], function () {
     Route::get('app-settings', [AuthController::class, 'appSettings']);
     Route::get('get-goal', [AuthController::class, 'getGoal']);
     Route::get('checkCron', [CronController::class, 'sendEventReminder']);
+
+    Route::post('filter-members', [HomeController::class, 'filterMembers']);
+
     // Route::post('liap/google-notifications', [SubscriptionController::class, 'googleNotifications']);
     // Route::post('liap/apple-notifications', [SubscriptionController::class, 'appleNotifications']);
 
@@ -55,7 +58,6 @@ Route::group([], function () {
 
         /******************************-----HOME SCREEN API-----************************************/
         Route::get('home', [HomeController::class, 'home']);
-        Route::post('filter-members', [HomeController::class, 'filterMembers']);
 
 
         /******************************-----USER API-----************************************/
