@@ -15,14 +15,14 @@ class CustomValidator
         // convert value in lower case and then check in database
         Validator::extend('iunique', function ($attribute, $value, $parameters, $validator) {
             $query = DB::table($parameters[0]);
-            $query->where($parameters[1], "ILIKE", $value);
+            $query->where($parameters[1], "LIKE", $value);
 
             $i = 2;
             while (isset($parameters[$i + 1])) {
                 if (count(explode('~', $parameters[$i + 1])) > 1) {
                     $query->whereIn($parameters[$i], explode('~', $parameters[$i + 1]));
                 } else {
-                    $query->where($parameters[$i], "ILIKE", $parameters[$i + 1]);
+                    $query->where($parameters[$i], "LIKE", $parameters[$i + 1]);
                 }
                 $i += 2;
             }
@@ -40,13 +40,13 @@ class CustomValidator
         // convert value in lower case and then check in database
         Validator::extend('iexists', function ($attribute, $value, $parameters, $validator) {
             $query = DB::table($parameters[0]);
-            $query->where($parameters[1], "ILIKE", $value);
+            $query->where($parameters[1], "LIKE", $value);
             $i = 2;
             while (isset($parameters[$i + 1])) {
                 if (count(explode('~', $parameters[$i + 1])) > 1) {
                     $query->whereIn($parameters[$i], explode('~', $parameters[$i + 1]));
                 } else {
-                    $query->where($parameters[$i], "ILIKE", $parameters[$i + 1]);
+                    $query->where($parameters[$i], "LIKE", $parameters[$i + 1]);
                 }
                 $i += 2;
             }
