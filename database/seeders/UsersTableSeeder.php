@@ -2,7 +2,8 @@
 namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use Faker\Factory as Faker;
-use DB;
+use App\Models\User;
+
 class UsersTableSeeder extends Seeder
 {
     public function run()
@@ -16,7 +17,7 @@ class UsersTableSeeder extends Seeder
             $email = $faker->email;
             $phone = $faker->phoneNumber;
 
-            DB::table('users')->insert([
+            User::insert([
                 'first_name' => $firstName,
                 'last_name' => $lastName,
                 'full_name' => $fullName,
