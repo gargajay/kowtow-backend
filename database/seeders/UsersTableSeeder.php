@@ -2,7 +2,7 @@
 namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use Faker\Factory as Faker;
-
+use DB;
 class UsersTableSeeder extends Seeder
 {
     public function run()
