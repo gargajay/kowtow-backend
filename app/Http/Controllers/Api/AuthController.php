@@ -39,7 +39,7 @@ class AuthController extends Controller
             'first_name' => ['nullable', 'string', 'max:255',],
             'last_name' => ['nullable', 'string', 'max:255'],
             'email' => ['required', 'email:strict', 'iunique:users,email,user_type,' . USER_TYPE['USER'], 'max:255'],
-            'country_code' => ['required_with:phone', 'max:255'],
+            // 'country_code' => ['required_with:phone', 'max:255'],
             'phone' => ['nullable', 'phone_verify:country_code', 'iunique:users,phone,user_type,' . USER_TYPE['USER'], 'max:255'],
             'password' => ['required', 'strong_password'],
             'device_token' => ['nullable', 'max:255'],
@@ -50,10 +50,7 @@ class AuthController extends Controller
             'longitude' => ['required_with:latitude', 'nullable', 'longitude'],
             'date_of_birth' => ['nullable', 'string'],
             'biography' => ['nullable', 'string', 'max:255'],
-            'fitness_level' => ['nullable', 'string', 'max:255'],
-            'workout_hours_id' => ['nullable', 'integer', 'max:255'],
-            'goal_id' => ['nullable', 'integer', 'iexists:goals,id'],
-            'screen_color' => ['nullable', 'string', 'max:255'],
+          
         ];
 
         // validate input data using the Validator method of the PublicException class
