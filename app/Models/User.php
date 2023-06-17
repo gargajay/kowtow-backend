@@ -138,9 +138,7 @@ class User extends Authenticatable
         'Update' => ['addresses']
     ];
 
-    protected $appends = [
-        'rating', 'fitness_type',
-    ];
+   
 
     protected function getFullNameAttribute($value)
     {
@@ -254,42 +252,5 @@ class User extends Authenticatable
         ];
     }
 
-    public function goal()
-    {
-        return $this->belongsTo(Goal::class);
-    }
-
-    public function workoutHours()
-    {
-        return $this->belongsTo(WorkoutHours::class);
-    }
-
-    public function getRatingAttribute()
-    {
-        return $this->fitness_level;
-    }
-
-    public function getFitnessTypeAttribute()
-    {
-        switch ($this->fitness_level) {
-            case 1.0:
-                return 'Poor';
-                break;
-            case 2.0:
-                return 'Below Average';
-                break;
-            case 3.0:
-                return 'Average';
-                break;
-            case 4.0:
-                return 'Good';
-                break;
-            case 5.0:
-                return 'Excellent';
-                break;
-            default:
-                return 'Poor';
-                break;
-        }
-    }
+   
 }
