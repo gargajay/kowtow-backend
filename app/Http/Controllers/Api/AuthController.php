@@ -113,7 +113,7 @@ class AuthController extends Controller
             'hobby',
             'complete_status',
             'blood_type',
-        ])
+        ]);
 
 
         
