@@ -74,28 +74,69 @@ class AuthController extends Controller
         $userObject->account_type = ACCOUNT_TYPE['NORMAL'];
         $userObject->user_type = USER_TYPE['USER'];
 
+        $userObject   =    Helper::UpdateObjectIfKeyNotEmpty($userObject,[
+            'full_name',
+            'first_name',
+            'last_name',
+            'email',
+            'country_code',
+            'phone',
+            'device_type',
+            'device_token',
+            'image',
+            'social_image_url',
+            'password',
+            'timezone',
+            'date_of_birth',
+            'biography',
+            'gender',
+            'language',
+            'stripe_id',
+            'blocked',
+            'is_profile_completed',
+            'city',
+            'annual_income',
+            'occupation',
+            'company',
+            'height',
+            'body_shape',
+            'ethnicity',
+            'hair_color',
+            'eye_color',
+            'relationship_status',
+            'children',
+            'smoking',
+            'drinking',
+            'diet',
+            'character',
+            'fashion_type',
+            'hobby',
+            'complete_status',
+            'blood_type',
+        ])
+
+
+        
+
         // set the object properties with the input data
-        $userObject->first_name = $request->first_name;
-        $userObject->last_name = $request->last_name;
-        $userObject->full_name = $request->full_name;
-        $userObject->email = $request->email;
-        $userObject->phone = $request->phone;
-        $userObject->country_code = $request->country_code;
-        $userObject->password = bcrypt($request->password);
-        $userObject->timezone = $request->timezone;
-        $userObject->date_of_birth = $request->date_of_birth;
-        $userObject->biography = $request->biography;
-        $userObject->fitness_level = $request->fitness_level;
-        $userObject->workout_hours_id = $request->workout_hours_id;
-        $userObject->goal_id = $request->goal_id;
-        $userObject->screen_color = $request->screen_color;
+        // $userObject->first_name = $request->first_name;
+        // $userObject->last_name = $request->last_name;
+        // $userObject->full_name = $request->full_name;
+        // $userObject->email = $request->email;
+        // $userObject->phone = $request->phone;
+        // $userObject->country_code = $request->country_code;
+        // $userObject->password = bcrypt($request->password);
+        // $userObject->timezone = $request->timezone;
+        // $userObject->date_of_birth = $request->date_of_birth;
+        // $userObject->biography = $request->biography;
+      
 
-        // set device token and type
-        $userObject->device_token = $request->device_token;
-        $userObject->device_type = $request->device_type;
+        // // set device token and type
+        // $userObject->device_token = $request->device_token;
+        // $userObject->device_type = $request->device_type;
 
-        //save address id
-        $userObject->address_id = $addressObject->id;
+        // //save address id
+        // $userObject->address_id = $addressObject->id;
 
         // if data not save show error
         PublicException::NotSave($userObject->save());
