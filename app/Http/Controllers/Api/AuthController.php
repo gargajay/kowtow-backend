@@ -64,7 +64,7 @@ class AuthController extends Controller
         $addressObject->type = ADDRESS_TYPE['USER_ADDRESS'];
         $addressObject->latitude = $request->latitude;
         $addressObject->longitude = $request->longitude;
-        $addressObject = Helper::MakeGeolocation($addressObject, $request->longitude, $request->latitude);
+        // $addressObject = Helper::MakeGeolocation($addressObject, $request->longitude, $request->latitude);
 
         // if data not save show error
         PublicException::NotSave($addressObject->save());
