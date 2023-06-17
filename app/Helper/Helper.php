@@ -275,6 +275,8 @@ class Helper
                 } elseif (is_string($data)) {
                     // It's a normal string
                     $jsonData = $data
+                }else{
+                    $jsonData = $data
                 }
                 $object->$key = $jsonData;
 
