@@ -31,18 +31,15 @@ class UserController extends Controller
             'first_name' => ['string', 'max:255', 'nullable'],
             'last_name' => ['nullable', 'string', 'max:255'],
             //'email' => ['required', 'email:strict', 'iunique:users,email,user_type,' . USER_TYPE['USER'] . ',' . Auth::id(), 'max:255'],
-            'phone' => ['nullable', 'phone_verify:country_code', 'iunique:users,phone,user_type,' . USER_TYPE['USER'] . ',' . Auth::id(), 'max:255'],
-            'country_code' => ['required_with:phone', 'max:255'],
+            'phone' => ['nullable', 'iunique:users,phone,user_type,' . USER_TYPE['USER'] . ',' . Auth::id(), 'max:255'],
+            // 'country_code' => ['required_with:phone', 'max:255'],
             'image' => ['nullable', 'mimes:jpg,png,jpeg,gif'],
             'social_image_url' => ['nullable', 'string', 'max:255', 'url'],
             'date_of_birth' => ['nullable','string'],
             'biography' => ['nullable', 'max:255'],
-            'gender' => ['nullable', 'in:' . implode(',', GENDER)],
-            'fitness_level' => ['nullable', 'string', 'max:255'],
-            'workout_hours_id' => ['nullable', 'integer', 'max:255'],
-            'goal_id' => ['nullable', 'integer', 'iexists:goals,id'],
-            'screen_color' => ['nullable', 'string', 'max:255'],
+            'gender' => ['nullable', 'in:' . implode(',', GENDER)]
         ];
+          
 
         // validate input data using the Validator method of the PublicException class
         PublicException::Validator($request->all(), $rules);
@@ -54,23 +51,47 @@ class UserController extends Controller
         $userObject = User::find(Auth::id());
 
         // set the object properties with the input data
-        $userObject = Helper::UpdateObjectIfKeyNotEmpty($userObject, [
+        $userObject   =    Helper::UpdateObjectIfKeyNotEmpty($userObject,[
             'full_name',
             'first_name',
             'last_name',
-            'phone',
+            'email',
             'country_code',
+            'phone',
+            'device_type',
+            'device_token',
+            'image',
             'social_image_url',
+            'timezone',
             'date_of_birth',
             'biography',
             'gender',
-            'fitness_level',
-            'workout_hours_id',
-            'goal_id',
-            'screen_color',
+            'language',
+            'stripe_id',
+            'blocked',
+            'is_profile_completed',
+            'city',
+            'annual_income',
+            'occupation',
+            'company',
+            'height',
+            'body_shape',
+            'ethnicity',
+            'hair_color',
+            'eye_color',
+            'relationship_status',
+            'children',
+            'smoking',
+            'drinking',
+            'diet',
+            'character',
+            'fashion_type',
+            'hobby',
+            'complete_status',
+            'blood_type',
         ]);
 
-        $userObject->is_profile_completed = PROFILE_COMPLETE['YES'];
+        // $userObject->is_profile_completed = PROFILE_COMPLETE['YES'];
 
 
 
@@ -90,7 +111,7 @@ class UserController extends Controller
             'longitude',
         ]);
 
-        $addressObject = Helper::MakeGeolocation($addressObject, $request->longitude, $request->latitude);
+        // $addressObject = Helper::MakeGeolocation($addressObject, $request->longitude, $request->latitude);
 
         // if data not save show error
         PublicException::NotSave($addressObject->save());
@@ -111,7 +132,8 @@ class UserController extends Controller
 
     public function getProfile(Request $request)
     {
-        $userObject = User::with('goal')->where('id', Auth::id())->with(User::$customRelations['Profile'])->first()->append(User::$customAppend['Profile']);
+        $userId = $request->user_id ?? Auth::id();
+        $userObject = User::where('id', )->first();
         $userObject->makeVisible(['date_of_birth', 'biography', 'gender', 'is_profile_completed', 'push_notification', 'language']);
 
         return Helper::SuccessReturn($userObject, 'PROFILE_FETCHED');

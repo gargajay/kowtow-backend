@@ -85,7 +85,6 @@ class AuthController extends Controller
             'device_token',
             'image',
             'social_image_url',
-            'password',
             'timezone',
             'date_of_birth',
             'biography',
@@ -125,7 +124,7 @@ class AuthController extends Controller
         // $userObject->email = $request->email;
         // $userObject->phone = $request->phone;
         // $userObject->country_code = $request->country_code;
-        // $userObject->password = bcrypt($request->password);
+        $userObject->password = bcrypt($request->password);
         // $userObject->timezone = $request->timezone;
         // $userObject->date_of_birth = $request->date_of_birth;
         // $userObject->biography = $request->biography;

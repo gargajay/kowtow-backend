@@ -1,7 +1,7 @@
 <?php
 
 
-defined('GENDER') or define("GENDER", ['male', 'female']);
+defined('GENDER') or define("GENDER", ['male', 'female','other']);
 defined('ACCOUNT_TYPE') or define("ACCOUNT_TYPE", ['NORMAL' => 1, 'SOCIAL' => 2, 'BOTH' => 3]);
 defined('USER_TYPE') or define("USER_TYPE", ['USER' => 'user', 'ADMIN' => 'admin']);
 defined('DEVICE_TYPE') or define("DEVICE_TYPE", ['ANDROID' => 'A', 'IOS' => 'I']);

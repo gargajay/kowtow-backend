@@ -263,7 +263,22 @@ class Helper
     {
         foreach ($keys as $key) {
             if (request()->has($key) && !empty(request()->$key)) {
-                $object->$key = request()->$key;
+
+                $data = request()->$key;
+                 (is_array($data)) {
+                    // It's an array
+                    $jsonData = json_encode($data);
+                } elseif (is_string($data) && strpos($data, ',') !== false) {
+                    // It's a string array
+                    $dataArray = explode(',', $data);
+                    $jsonData = json_encode($dataArray);
+                } elseif (is_string($data)) {
+                    // It's a normal string
+                    $jsonData = $data
+                }
+                $object->$key = $jsonData;
+
+
             }
         }
         return $object;
