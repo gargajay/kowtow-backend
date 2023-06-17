@@ -40,7 +40,7 @@ class AuthController extends Controller
             'last_name' => ['nullable', 'string', 'max:255'],
             'email' => ['required', 'email:strict', 'iunique:users,email,user_type,' . USER_TYPE['USER'], 'max:255'],
             // 'country_code' => ['required_with:phone', 'max:255'],
-            'phone' => ['nullable', 'phone_verify:country_code', 'iunique:users,phone,user_type,' . USER_TYPE['USER'], 'max:255'],
+            'phone' => ['nullable','iunique:users,phone,user_type,' . USER_TYPE['USER'], 'max:255'],
             'password' => ['required', 'strong_password'],
             'device_token' => ['nullable', 'max:255'],
             'device_type' => ['required', 'in:' . implode(',', DEVICE_TYPE)],
