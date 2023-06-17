@@ -147,10 +147,12 @@ class AuthController extends Controller
             PublicException::NotSave($userObject->save());
         }
 
+        $userObject = User::find($userObject->id);
+
         // generate an access token for the user
         $userObject->access_token = $userObject->createToken($userObject->id . ' token')->accessToken;
 
-        return Helper::SuccessReturn($userObject->load(User::$customRelations['Auth'])->append(User::$customAppend['Auth']), 'REGISTRATION_SUCCESSFUL');
+        return Helper::SuccessReturn($userObject, 'REGISTRATION_SUCCESSFUL');
     }
 
 
