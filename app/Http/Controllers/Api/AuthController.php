@@ -203,7 +203,7 @@ class AuthController extends Controller
             'longitude',
         ]);
 
-        $addressObject = Helper::MakeGeolocation($addressObject, $request->longitude, $request->latitude);
+        // $addressObject = Helper::MakeGeolocation($addressObject, $request->longitude, $request->latitude);
 
         // if data not save show error
         PublicException::NotSave($addressObject->save());
